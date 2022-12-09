@@ -1,7 +1,7 @@
 # GAME230-Assignment5-Liu
 GAME230-Assignment5-Pong  
   
-1-4 player number supported (There is a weird bug that the ball will keep uncontrollable moving during the pre-input time. I can't find a way to fix it)  
+1-4 player number supported (There is a weird bug that the ball will keep moving during the pre-input time. I can't find a way to fix it)  
 1 player = AI mode  
   
 Contols:  
