@@ -18,10 +18,12 @@ void Ball::render(sf::RenderWindow& window, float deltatime) {
 	window.draw(body);
 }
 void Ball::setPosition(const sf::Vector2f& position) {
+	//
 	GameObject::setPosition(position);
 	body.setPosition(position);
 }
 void Ball::move(const sf::Vector2f& velocity) {
+	//std::cout << "ball move" << std::endl;
 	GameObject::move(velocity);
 	body.setPosition(position);
 }

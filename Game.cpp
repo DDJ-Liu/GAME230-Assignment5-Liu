@@ -6,7 +6,7 @@ using namespace gm;
 using namespace sf;
 
 // Implement constructor, this will effectively be a setup function as the game gets more complex
-Game::Game() : window(VideoMode(GameWidth, GameHeight), "Game"), clock(), deltaTime(0), /*box1(Vector2f(250, 300), Vector2f(50, 50)), box2(Vector2f(350, 300), Vector2f(50, 50)),*/ ball1(Vector2f(300, 300)),ui(), endGame(false), soundManager() {
+Game::Game() : window(VideoMode(GameWidth, GameHeight), "Pong - By DDJ Liu"), clock(), deltaTime(0), /*box1(Vector2f(250, 300), Vector2f(50, 50)), box2(Vector2f(350, 300), Vector2f(50, 50)),*/ ball1(Vector2f(300, 300)),ui(), endGame(false), soundManager() {
 	// Set our fps to 60
 	window.setFramerateLimit(60);
 }
@@ -14,6 +14,7 @@ Game::Game() : window(VideoMode(GameWidth, GameHeight), "Game"), clock(), deltaT
 void Game::run() {
 	// This is our game loop!
 	// All input, logic, and rendering should be handled here
+	pause(ETERNAL_PAUSE_TIME);
 	initialize();
 	while (window.isOpen())
 	{
@@ -207,6 +208,14 @@ void Game::render() {
 }
 
 void Game::initialize() {
+	ball1.reset(window);
+	std::cout << "Please enter player number(1-4)" << std::endl;
+	std::cin >> playerNum;
+	while (playerNum<1 || playerNum>MAX_PLAYER_NUMBER) {
+		std::cout << "Wrong player number, please enter again.(1-4)" << std::endl;
+		std::cin >> playerNum;
+	}
+
 	//ball
 	ball1.reset(window);
 
@@ -237,10 +246,13 @@ void Game::initialize() {
 	player[1].getAI()->setSensor(ball1, paddle[0]);
 
 	//gamemode settings
-	if (playerNum >= 2)
+	if (playerNum == 1) {
+		player[1].setActive(true);
 		player[1].setAI(true);
-
-	pauseTimer;
+		playerNum = 2;
+	}
+	restart();
+	pauseTimer = 0;
 
 }
 
