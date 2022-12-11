@@ -3,7 +3,7 @@
 using namespace gm;
 using namespace sf;
 
-Ball::Ball(const sf::Vector2f position, const float size, const float speed):GameObject(position,Vector2f(size,size)) {
+Ball::Ball(const sf::Vector2f position, const float size, const float speed):GameObject(position,Vector2f(2*size,2*size)) {
 	body.setPosition(position);
 	body.setRadius(size);
 }
